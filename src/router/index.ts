@@ -1,22 +1,56 @@
 import Vue from 'vue';
 import VueRouter, { RouteConfig } from 'vue-router';
-import Home from '../views/Home.vue';
+import Layout from '@/views/Layout.vue';
+import Users from '@/views/Users.vue';
 
 Vue.use(VueRouter);
 
 const routes: Array<RouteConfig> = [
   {
-    path: '/',
-    name: 'Home',
-    component: Home,
+    path: '',
+    component: Layout,
+    children: [
+      {
+        path: '',
+        redirect: '/users',
+      },
+      {
+        path: '/users',
+        component: Users,
+      },
+      {
+        path: '/users/:id/links',
+        component: () => import('@/views/Links.vue'),
+      },
+      {
+        path: '/products',
+        component: () => import('@/views/products/Products.vue'),
+      },
+      {
+        path: '/products/create',
+        component: () => import('@/views/products/ProductForm.vue'),
+      },
+      {
+        path: '/products/:id/edit',
+        component: () => import('@/views/products/ProductForm.vue'),
+      },
+      {
+        path: '/orders',
+        component: () => import('@/views/Orders.vue'),
+      },
+      {
+        path: '/profile',
+        component: () => import('@/views/Profile.vue'),
+      },
+    ],
   },
   {
-    path: '/about',
-    name: 'About',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue'),
+    path: '/login',
+    component: () => import('@/views/Login.vue'),
+  },
+  {
+    path: '/register',
+    component: () => import('@/views/Register.vue'),
   },
 ];
 
