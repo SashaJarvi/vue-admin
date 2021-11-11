@@ -20,7 +20,6 @@
 import axios from 'axios';
 import Navbar from '@/components/Navbar.vue';
 import MainMenu from '@/components/MainMenu.vue';
-import { User } from '@/models/user';
 
 export default {
   name: 'Layout',
